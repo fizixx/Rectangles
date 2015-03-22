@@ -57,13 +57,17 @@ int main() {
   std::vector<NamedRect> rectangles;
 
   // Read the rectangles in the file into our list of rectangles.
+  std::cout << "Loading rectangles from file: rectangles.txt" << std::endl;
   readRectanglesFromFile("rectangles.txt", &rectangles);
 
+#if 0
   for (const auto& rect : rectangles)
     std::cout << "Rect: " << rect << std::endl;
+#endif  // 0
+
+  std::cout << "Calculating results..." << std::endl;
 
   ResultsType results;
-
   for (const auto& first : rectangles) {
     Results* r = getResults(&results, first.name);
 
@@ -79,6 +83,7 @@ int main() {
     }
   }
 
+  std::cout << "Writing output to file: results.txt" << std::endl;
 #if 0
   printResults(std::cout, results);
 #else
