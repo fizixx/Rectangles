@@ -26,5 +26,5 @@ rect_test: rect_test.cpp rect.h
 # ----- clean -----
 
 clean:
-	rm -rf *.exe
+	rm -rf rectangles rect_test
 	rm -rf *.o
