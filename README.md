@@ -2,11 +2,7 @@
 
 ## Building
 
-All targets are built by the included Makefile.
-
-```
-make
-```
+To build all the targets, run make from the root of the source tree.
 
 ## Running
 
