@@ -1,5 +1,6 @@
 // Rectangles
 
+#include <cassert>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -20,6 +21,7 @@ using ResultsType = std::unordered_map<char, Results>;
 
 // Get the corresponding Result object for the given rectangle name.
 Results* getResults(ResultsType* results, char name) {
+  assert(results);
   bool inserted = false;
   auto it = results->find(name);
   if (it == std::end(*results))
