@@ -59,15 +59,18 @@ void printResults(std::ostream& os, const ResultsType& results) {
 int main(int argc, char* argv[]) {
   std::string inFilename, outFilename;
 
+  // If no arguments are given, we tell the user what to do.
   if (argc < 2) {
     std::cout << "USAGE: " << argv[0] << " <input file> [<output file>]"
         << std::endl;
     return 1;
   }
 
+  // If we have a second argument, use it as the input filename.
   if (argc >= 2)
     inFilename = std::string(argv[1]);
 
+  // If we have a thrid argument, use it as the output filename.
   if (argc >= 3)
     outFilename = std::string(argv[2]);
 
@@ -108,6 +111,8 @@ int main(int argc, char* argv[]) {
     }
   }
 
+  // Write the output to file if we have a filename, otherwise print the results
+  // to the console.
   if (outFilename.empty()) {
     std::cout << "Results:" << std::endl;
     printResults(std::cout, results);
