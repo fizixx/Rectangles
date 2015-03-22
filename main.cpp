@@ -85,11 +85,16 @@ int main(int argc, char* argv[]) {
 
   std::cout << "Calculating results..." << std::endl;
 
+  // For each rectangle, log the results against each other rectangle.
   ResultsType results;
   for (const auto& first : rectangles) {
     Results* r = getResults(&results, first.name);
 
     for (const auto& second : rectangles) {
+      // We don't test again ourselves.
+      if (first.name == second.name)
+        continue;
+
       if (first.rect.overlaps(second.rect))
         r->overlaps.push_back(second.name);
       if (first.rect.contains(second.rect))
