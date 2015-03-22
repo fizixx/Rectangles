@@ -4,11 +4,11 @@
 #define NAMED_RECT_H_
 
 #include <ostream>
-#include <string>
 #include <vector>
 
 #include "rect.h"
 
+// A wrapper class for a Rect with an added name.
 struct NamedRect {
   char name;
   Rect rect;

@@ -3,6 +3,8 @@
 #ifndef RECT_H_
 #define RECT_H_
 
+#include <iostream>
+
 struct Rect {
   int left, bottom, right, top;
 

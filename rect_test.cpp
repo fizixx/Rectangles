@@ -1,7 +1,6 @@
 // Rectangles
 
 #include <cassert>
-#include <iostream>
 
 #include "rect.h"
 

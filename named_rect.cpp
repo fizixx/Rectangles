@@ -5,8 +5,9 @@
 #include <cassert>
 #include <cctype>
 #include <cstddef>
-#include <cstdlib>
+#include <exception>
 #include <fstream>
+#include <string>
 
 // static
 bool NamedRect::fromString(const std::string& str, NamedRect* rectOut) {
