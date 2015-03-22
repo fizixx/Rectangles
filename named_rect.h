@@ -13,6 +13,9 @@ struct NamedRect {
   char name;
   Rect rect;
 
+  // Build a NamedRect from the given string.  The string should have the
+  // following format:
+  // <name>,<left>,<bottom>,<right>,<top>\n
   static bool fromString(const std::string& str, NamedRect* rectOut);
 
   NamedRect()
@@ -21,7 +24,7 @@ struct NamedRect {
 
   friend std::ostream& operator<<(std::ostream& os,
       const NamedRect& namedRect) {
-    os << namedRect.name << " - " << namedRect.rect;
+    os << namedRect.name << ' ' << namedRect.rect;
     return os;
   }
 };

@@ -20,11 +20,19 @@ void testOverlaps() {
   std::cout << "OK" << std::endl;
 }
 
+void testTouches() {
+  std::cout << "testTouches: ";
+  assert(Rect(1, 1, 4, 4).touches(Rect(4, 1, 6, 4)));
+  assert(!Rect(1, 1, 4, 4).touches(Rect(1, 1, 5, 5)));
+  std::cout << "OK" << std::endl;
+}
+
 int main() {
   std::cout << "rect_test" << std::endl;
 
   testContains();
   testOverlaps();
+  testTouches();
 
   return 0;
 }

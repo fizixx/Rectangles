@@ -26,6 +26,11 @@
 *.exe
 *.out
 *.app
+
 results.txt
 .cproject
 .project
+rectangles
+rect_test
+rect_test.dSYM
+

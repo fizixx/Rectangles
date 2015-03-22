@@ -1,3 +1,5 @@
 # Rectangles
 
-Rectangles application.
+## Building
+
+All targets are built by the included Makefile.

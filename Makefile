@@ -1,11 +1,13 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -O0 -g -Wall -Wextra -pedantic
 
-OBJS = main.o named_rect.o
+# Full optimize with all warnings.
+CXXFLAGS = -std=c++11 -O2 -g -Wall -Wextra -pedantic
 
 all: rectangles tests
 
 # ----- rectangles -----
+
+OBJS = main.o named_rect.o
 
 rectangles: $(OBJS)
 	$(CXX) -o rectangles $(OBJS)
@@ -18,13 +20,15 @@ named_rect.o: named_rect.cpp named_rect.h rect.h
 
 # ----- tests -----
 
-tests: rect_test
+TESTS = rect_test
 
-rect_test: rect_test.cpp rect.h
+tests: $(TESTS)
+
+rect_test: rect_test.cpp rect.h rectangles
 	$(CXX) $(CXXFLAGS) rect_test.cpp -o rect_test
 
 # ----- clean -----
 
 clean:
-	rm -rf rectangles rect_test
+	rm -rf rectangles $(TESTS)
 	rm -rf *.o

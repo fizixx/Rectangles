@@ -1,8 +1,8 @@
 // Rectangles
 
-#include <cassert>
 #include <fstream>
 #include <iostream>
+#include <string>
 #include <unordered_map>
 #include <vector>
 
@@ -15,6 +15,7 @@ struct Results {
   std::vector<char> touches;
 };
 
+// A structure to store our results in.
 using ResultsType = std::unordered_map<char, Results>;
 
 // Get the corresponding Result object for the given rectangle name.
@@ -53,16 +54,33 @@ void printResults(std::ostream& os, const ResultsType& results) {
   }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+  std::string inFilename, outFilename;
+
+  if (argc < 2) {
+    std::cout << "USAGE: " << argv[0] << " <input file> [<output file>]"
+        << std::endl;
+    return 1;
+  }
+
+  if (argc >= 2)
+    inFilename = std::string(argv[1]);
+
+  if (argc >= 3)
+    outFilename = std::string(argv[2]);
+
   std::vector<NamedRect> rectangles;
 
   // Read the rectangles in the file into our list of rectangles.
-  std::cout << "Loading rectangles from file: rectangles.txt" << std::endl;
-  readRectanglesFromFile("rectangles.txt", &rectangles);
+  std::cout << "Loading rectangles from file: " << inFilename << std::endl;
+  if (!readRectanglesFromFile(inFilename, &rectangles)) {
+    std::cerr << "Could not open input file: " << inFilename << std::endl;
+    return 1;
+  }
 
 #if 0
   for (const auto& rect : rectangles)
-    std::cout << "Rect: " << rect << std::endl;
+  std::cout << "Rect: " << rect << std::endl;
 #endif  // 0
 
   std::cout << "Calculating results..." << std::endl;
@@ -83,13 +101,19 @@ int main() {
     }
   }
 
-  std::cout << "Writing output to file: results.txt" << std::endl;
-#if 0
-  printResults(std::cout, results);
-#else
-  std::ofstream outFile("results.txt", std::ios::out);
-  printResults(outFile, results);
-#endif
+  if (outFilename.empty()) {
+    std::cout << "Results:" << std::endl;
+    printResults(std::cout, results);
+  } else {
+    std::cout << "Writing output to file: " << outFilename << std::endl;
+    std::ofstream outFile(outFilename, std::ios::out);
+    if (!outFile.is_open()) {
+      std::cerr << "Could not open output file for writing: " << outFilename
+          << std::endl;
+      return 1;
+    }
+    printResults(outFile, results);
+  }
 
   return 0;
 }

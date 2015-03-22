@@ -8,10 +8,13 @@
 #include <cstdlib>
 #include <fstream>
 
+// static
 bool NamedRect::fromString(const std::string& str, NamedRect* rectOut) {
   NamedRect result;
   std::vector<std::string> parts;
 
+  // Split the string into the parts separated by a comma.  We also skip
+  // whitespace as we go.
   size_t i = 0;
   const size_t strLen = str.length();
   std::string current;
@@ -24,12 +27,14 @@ bool NamedRect::fromString(const std::string& str, NamedRect* rectOut) {
 
     if (ch == ',') {
       if (!current.empty()) {
+        // Add the current string and clear it out for the next one.
         parts.push_back(current);
         current.clear();
       }
       continue;
     }
 
+    // Nothing special, just add the character to the current string.
     current.push_back(ch);
   }
 
@@ -40,13 +45,20 @@ bool NamedRect::fromString(const std::string& str, NamedRect* rectOut) {
   if (parts.size() < 5)
     return false;
 
-  // Parse each part of the line into it's rectangle components.
+  // Parse each part of the line into it's rectangle components.  We don't care
+  // if the name is longer than one character, we just use the first one.
   result.name = parts[0][0];
 
-  result.rect.left = atoi(parts[1].c_str());
-  result.rect.bottom = atoi(parts[2].c_str());
-  result.rect.right = atoi(parts[3].c_str());
-  result.rect.top = atoi(parts[4].c_str());
+  try {
+    result.rect.left = std::stoi(parts[1]);
+    result.rect.bottom = std::stoi(parts[1]);
+    result.rect.right = std::stoi(parts[1]);
+    result.rect.top = std::stoi(parts[1]);
+  } catch (std::exception& e) {
+    // If we can't convert any of the parts, then we assume it's not a valid
+    // line, so we return false.
+    return false;
+  }
 
   *rectOut = result;
 
