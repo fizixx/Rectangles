@@ -1,5 +1,13 @@
 # Rectangles
 
+## Design
+
+The application operates in 2 stages.
+
+- Read a list of rectangles from the input file.
+- Calculate the results from the built list of rectangles.
+- Write the output.
+
 ## Building
 
 To build all the targets, run make from the root of the source tree.
@@ -16,6 +24,13 @@ This is the main output of the program and can be called like this:
 rectangles <input file> [<output file>]
 ```
 
+Specify the input file as the first parameter.  When no output file is specified in the second parameter, the output will print out to the console.  Otherwise the output will be written into the output file.
+
 ### rect_test
 
 Runs some unit tests for the Rect class.
+
+## Further Development
+
+- The application required a lot more unit tests.  The string parsing and file reading especially.
+
