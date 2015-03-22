@@ -2,7 +2,7 @@
 
 ## Design
 
-The application operates in 2 stages.
+The application operates in 3 stages.
 
 - Read a list of rectangles from the input file.
 - Calculate the results from the built list of rectangles.
