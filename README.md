@@ -16,6 +16,6 @@ This is the main output of the program and can be called like this:
 rectangles <input file> [<output file>]
 ```
 
-### rect_tests
+### rect_test
 
 Runs some unit tests for the Rect class.
