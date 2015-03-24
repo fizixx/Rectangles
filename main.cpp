@@ -22,10 +22,10 @@ using ResultsType = std::unordered_map<char, Results>;
 // Get the corresponding Result object for the given rectangle name.
 Results* getResults(ResultsType* results, char name) {
   assert(results);
-  bool inserted = false;
   auto it = results->find(name);
   if (it == std::end(*results))
-    std::tie(it, inserted) = results->insert(std::make_pair(name, Results()));
+    std::tie(it, std::ignore) = results->insert(
+        std::make_pair(name, Results()));
 
   return &it->second;
 }
