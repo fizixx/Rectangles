@@ -1,4 +1,3 @@
-CXX = g++
 
 # Full optimize with all warnings.
 CXXFLAGS = -std=c++11 -O2 -g -Wall -Wextra -pedantic
