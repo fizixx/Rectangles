@@ -23,9 +23,10 @@ using ResultsType = std::unordered_map<char, Results>;
 Results* getResults(ResultsType* results, char name) {
   assert(results);
   auto it = results->find(name);
-  if (it == std::end(*results))
-    std::tie(it, std::ignore) = results->insert(
-        std::make_pair(name, Results()));
+  if (it == std::end(*results)) {
+    auto result = results->insert(std::make_pair(name, Results()));
+    it = result.first;
+  }
 
   return &it->second;
 }
